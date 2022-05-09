@@ -30,10 +30,10 @@ export default class MainScene extends React.Component {
 
         //init Renderer
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.autoClear = false;
-        this.renderer.setClearColor(new THREE.Color(0x222222));
-        this.renderer.setSize(this.divRef.current.offsetWidth, this.divRef.current.offsetHeight);
+        // this.renderer.setPixelRatio(window.devicePixelRatio);
+        // this.renderer.autoClear = false;
+        // this.renderer.setClearColor(new THREE.Color(0x222222));
+        // this.renderer.setSize(this.divRef.current.offsetWidth, this.divRef.current.offsetHeight);
         this.divRef.current.appendChild(this.renderer.domElement);
 
         //init Scene
@@ -41,17 +41,17 @@ export default class MainScene extends React.Component {
         this.scene.background = new THREE.Color(0x222222);
 
         //init Camera
-        this.camera = new THREE.PerspectiveCamera(30, this.divRef.current.offsetWidth / this.divRef.current.offsetHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(25, this.divRef.current.offsetWidth / this.divRef.current.offsetHeight, 0.1, 1000);
         this.camera.position.z = 50;
 
-        //Metal Sphere
+        //Metal Sphere - From seperate component
         let sphere = new MetalSphere().create(loadingManager);
         this.scene.add(sphere);
 
         //Ambient Light
         let ambientLight = new THREE.AmbientLight(0x07215c);
         ambientLight.color.setRGB(0.02, 0.02, 0.07);
-        ambientLight.intensity = 5;
+        ambientLight.intensity = 10;
         this.scene.add(ambientLight);
 
         //Directional Light
